@@ -434,7 +434,10 @@ if st.button('Predict'):
     prediction = predict(model, input_features)
     st.write(f'**Prediction:** {"Bankrupt" if prediction == 1 else "Not Bankrupt"}')
 
-!pip install pyngrok
+import subprocess
+
+subprocess.run(["pip", "install", "pyngrok"])
+
 
 %%writefile app.py
 import streamlit as st
