@@ -439,7 +439,9 @@ import subprocess
 subprocess.run(["pip", "install", "pyngrok"])
 
 
-%%writefile app.py
+with open("app.py", "w") as f:
+    f.write("print('Hello, World!')")
+
 import streamlit as st
 import joblib
 import numpy as np
