@@ -21,7 +21,20 @@ import warnings
 warnings.filterwarnings('ignore')
 
 #load dataset
-df = pd.ExcelFile('/content/bankruptcy-prevention.xlsx')
+import pandas as pd
+import streamlit as st
+
+st.title("Bankruptcy Prediction")
+
+uploaded_file = st.file_uploader("Upload Bankruptcy Data (Excel)", type=["xlsx"])
+
+if uploaded_file is not None:
+    df = pd.read_excel(uploaded_file)
+    st.write("File Uploaded Successfully!")
+    st.dataframe(df.head())  # Show first few rows
+else:
+    st.warning("Please upload an Excel file to proceed.")
+
 
 df.sheet_names #This Attribute is used to return a list of all names in the Excel Workbook.
 
