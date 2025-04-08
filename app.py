@@ -40,10 +40,16 @@ if file is not None:
 
 
 
-df.sheet_names #This Attribute is used to return a list of all names in the Excel Workbook.
+xlsx = pd.ExcelFile(uploaded_file)       # ✅ Step 1: Create an ExcelFile object
+sheet_names = xlsx.sheet_names           # ✅ Step 2: Get list of sheets
+st.write("Available sheets:", sheet_names)
 
-# Load the dataset from the identified sheet
-df = pd.read_excel(df, sheet_name='bankruptcy-prevention')
+# Let user choose a sheet
+sheet_to_read = st.selectbox("Select a sheet", sheet_names)
+
+# Read the selected sheet into df
+df = pd.read_excel(xlsx, sheet_name=sheet_to_read)
+
 
 # Display basic information and first few rows
 df.info(), df.head()
