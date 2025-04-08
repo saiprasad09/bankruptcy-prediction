@@ -28,27 +28,27 @@ from sklearn.metrics import classification_report, accuracy_score
 
 st.title("Bankruptcy Prediction App")
 
-file = st.file_uploader("Upload CSV file", type=["csv"])
+uploaded_file = st.file_uploader("Upload Excel file", type=["xlsx"])
 
-if file is not None:
-    data = pd.read_csv(file)
-    st.write("Uploaded Data:")
-    st.write(data)
+if uploaded_file is not None:
+    xlsx = pd.ExcelFile(uploaded_file)
+    sheet_names = xlsx.sheet_names
+    st.write("Available sheets:", sheet_names)
 
+    sheet_to_read = st.selectbox("Select a sheet", sheet_names)
+    df = pd.read_excel(xlsx, sheet_name=sheet_to_read)
+
+    st.write("Data Preview:")
+    st.dataframe(df)
+
+
+    
     df = data.copy()
 
 
 
 
-xlsx = pd.ExcelFile(uploaded_file)       # ✅ Step 1: Create an ExcelFile object
-sheet_names = xlsx.sheet_names           # ✅ Step 2: Get list of sheets
-st.write("Available sheets:", sheet_names)
 
-# Let user choose a sheet
-sheet_to_read = st.selectbox("Select a sheet", sheet_names)
-
-# Read the selected sheet into df
-df = pd.read_excel(xlsx, sheet_name=sheet_to_read)
 
 
 # Display basic information and first few rows
