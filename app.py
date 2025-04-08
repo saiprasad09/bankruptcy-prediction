@@ -15,6 +15,7 @@ from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+import streamlit as st
 
 
 import warnings
