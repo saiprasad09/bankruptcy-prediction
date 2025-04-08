@@ -20,20 +20,23 @@ from sklearn.neighbors import KNeighborsClassifier
 import warnings
 warnings.filterwarnings('ignore')
 
-#load dataset
-import pandas as pd
-import streamlit as st
 
-st.title("Bankruptcy Prediction")
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, accuracy_score
 
-uploaded_file = st.file_uploader("Upload Bankruptcy Data (Excel)", type=["xlsx"])
+st.title("Bankruptcy Prediction App")
 
-if uploaded_file is not None:
-    df = pd.read_excel(uploaded_file)
-    st.write("File Uploaded Successfully!")
-    st.dataframe(df.head())  # Show first few rows
-else:
-    st.warning("Please upload an Excel file to proceed.")
+file = st.file_uploader("Upload CSV file", type=["csv"])
+
+if file is not None:
+    data = pd.read_csv(file)
+    st.write("Uploaded Data:")
+    st.write(data)
+
+    df = data.copy()
+
+
 
 
 df.sheet_names #This Attribute is used to return a list of all names in the Excel Workbook.
