@@ -52,7 +52,7 @@ if uploaded_file is not None:
 
 
 # Display basic information and first few rows
-df.info(), df.head()
+
 
 """
 The dataset is not properly parsed in separate columns.
